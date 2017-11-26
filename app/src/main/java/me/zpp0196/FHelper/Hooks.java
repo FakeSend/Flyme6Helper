@@ -35,27 +35,24 @@ public class Hooks implements IXposedHookLoadPackage {
             XposedBridge.log("crack by coderstory");
             XposedBridge.log("build by zpp0196");
 
-            //device_states | doCheckState
-            //6.6.1
-            findAndHookMethod("com.meizu.customizecenter.utils.ak", loadPackageParam.classLoader, "h", Context.class, XC_MethodReplacement.returnConstant(0));
-            //6.7.0
             findAndHookMethod("com.meizu.customizecenter.h.al", loadPackageParam.classLoader, "h", Context.class, XC_MethodReplacement.returnConstant(0));
-            findAndHookMethod("com.meizu.statsapp.util.Utils", loadPackageParam.classLoader, "isRoot", Context.class, XC_MethodReplacement.returnConstant(false));
-
-            //resetToSystemTheme
-            // 6.0.7 6.1.0 6.2.0 6.3.2
             findAndHookMethod("com.meizu.customizecenter.common.theme.common.theme.a", loadPackageParam.classLoader, "e", XC_MethodReplacement.returnConstant(false));
-            //6.9.0
-            findAndHookMethod("com.meizu.customizecenter.common.theme.common.theme.b", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
-
-            //data/data/com.meizu.customizecenter/font/   system_font
-            //6.0.7 6.1.0 6.2.0
-            findAndHookMethod("com.meizu.customizecenter.common.font.FontManager", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(true));
-            //6.7.0
-            findAndHookMethod("com.meizu.customizecenter.common.font.c", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(true));
-            //6.8.0
             findAndHookMethod("com.meizu.customizecenter.common.font.c", loadPackageParam.classLoader, "e", XC_MethodReplacement.returnConstant(""));
-            findAndHookMethod("com.meizu.customizecenter.common.font.f", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.meizu.customizecenter.common.theme.common.b", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.meizu.customizecenter.common.theme.common.b", loadPackageParam.classLoader, "b", Boolean.TYPE, XC_MethodReplacement.returnConstant(null));
+            findAndHookMethod("com.meizu.customizecenter.font.c", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.meizu.customizecenter.common.g.f", loadPackageParam.classLoader, "a", String.class, String.class, int.class, int.class, int.class, new XC_MethodReplacement() {
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    return null;
+                }
+            });
+            findAndHookMethod("com.meizu.customizecenter.common.g.c", loadPackageParam.classLoader, "a", String.class, String.class, int.class, int.class, int.class, new XC_MethodReplacement() {
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    return null;
+                }
+            });
 
             //主题混搭 ThemeContentProvider query Unknown URI
             findAndHookMethod("com.meizu.customizecenter.common.dao.ThemeContentProvider", loadPackageParam.classLoader, "query", Uri.class, String[].class, String.class, String[].class, String.class, new XC_MethodHook() {
